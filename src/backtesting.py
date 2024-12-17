@@ -1,6 +1,6 @@
 import pandas as pd
 
-def backtest_strategy(stock_data, signals, ticker='AAPL', initial_cash=10000):
+def backtest_strategy(stock_data, signals, ticker, initial_cash=10000):
     # Initialize cash and holdings
     cash = initial_cash
     holdings = 0

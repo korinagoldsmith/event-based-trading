@@ -5,26 +5,29 @@ from src.backtesting import backtest_strategy
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 def main():
-    # 1. Collect data
-    stock_data = fetch_stock_data("AAPL")
-    event_data = fetch_event_data("AAPL")
+    # input ticker
+    ticker = input("Enter the stock ticker: ").strip().upper()
+    print(f"Fetching data for {ticker}...")
+
+    # collect data
+    stock_data = fetch_stock_data(ticker)
+    event_data = fetch_event_data(ticker)
     print(stock_data.head())
     for article in event_data['articles'][:5]:
         print(article['title'], "-", article['publishedAt'])
     
-    # 2. Perform sentiment analysis
+    # perform sentiment analysis
     sentiment_scores = analyze_sentiment(event_data)
     analyzer = SentimentIntensityAnalyzer()
     sample_text = "Apple reports record-breaking earnings this quarter!"
     sentiment = analyzer.polarity_scores(sample_text)
     print(sentiment)
 
-    # 3. Generate trading signals
+    # generate trading signals
     signals = generate_signals(stock_data, sentiment_scores)
-    print("Signals: ", signals)
 
-    # 4. Backtest the strategy
-    results = backtest_strategy(stock_data, signals)
+    # backtest the strategy
+    results = backtest_strategy(stock_data, signals, ticker)
 
     print("Backtesting Results:", results)
 
