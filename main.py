@@ -10,6 +10,10 @@ def main():
 
     # collect data
     stock_data = fetch_stock_data(ticker)
+    if stock_data is None:
+        print(f"Skipping further processing for {ticker}.")
+        return
+
     event_data = fetch_event_data(ticker)
     print(stock_data.head())
 
