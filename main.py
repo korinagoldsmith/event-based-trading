@@ -2,7 +2,6 @@ from src.data_collection import fetch_stock_data, fetch_event_data
 from src.sentiment_analysis import analyze_sentiment
 from src.trading_strategy import generate_signals
 from src.backtesting import backtest_strategy
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 def main():
     # input ticker

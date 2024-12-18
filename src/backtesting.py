@@ -20,6 +20,7 @@ def backtest_strategy(stock_data, signals, ticker, initial_cash=10000):
     # Backtesting loop
     for i, signal in enumerate(signals):
         price = stock_data['Close'].iloc[i]
+        print(f"Day {i}, Price: {price}, Signal: {signal}, Cash: {cash}, Holdings: {holdings}")
         if signal == "Buy" and cash >= price:
             holdings += 1
             cash -= price
